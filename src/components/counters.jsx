@@ -11,37 +11,43 @@ class Counters extends Component {
     ],
   };
 
-  handleIncrement = counter => {
-    const counters = [...this.state.counters]
-    const index = counters.indexOf(counter)
-    counters[index] = {...counter}
+  handleIncrement = (counter) => {
+    const counters = [...this.state.counters];
+    const index = counters.indexOf(counter);
+    counters[index] = { ...counter };
     counters[index].value++;
-    this.setState({counters})
-  }
+    this.setState({ counters });
+  };
 
-  handleReset = counterId => {
-    const counters = this.state.counters.map(c => {
+  handleReset = (counterId) => {
+    const counters = this.state.counters.map((c) => {
       c.value = 0;
-      return c
-    })
-    this.setState({ counters })
-  }
+      return c;
+    });
+    this.setState({ counters });
+  };
 
-  handleDelete = () => {
-    const counters = this.state.counters.map(c => {
-      c = 0;
-      return c
-    })
-    this.setState({counters})
-
-  }
+  handleDelete = (counter) => {
+    const counters = this.state.counters.filter((c) => c.id !== counter.id);
+    this.setState({ counters });
+  };
 
   render() {
     return (
       <div>
-        <button onClick={this.handleReset} className="btn btn-primary btn-sm m-2">Reset</button>
+        <button
+          onClick={this.handleReset}
+          className="btn btn-primary btn-sm m-2"
+        >
+          Reset
+        </button>
         {this.state.counters.map((counter) => (
-          <Counter key={counter.id} counter = {counter} onDelete = {this.handleDelete} onIncrement = {this.handleIncrement}/>
+          <Counter
+            key={counter.id}
+            counter={counter}
+            onDelete={() => this.handleDelete(counter)}
+            onIncrement={this.handleIncrement}
+          />
         ))}
       </div>
     );
