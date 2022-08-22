@@ -40,14 +40,12 @@ class App extends Component {
     this.setState({ counters });
   };
   handleDecrement = (counter) => {
-    if (this.state.counters.value !== 0) {
-      const counters = [...this.state.counters];
-      const index = counters.indexOf(counter);
-      counters[index] = { ...counter };
-      counters[index].value--;
-      console.log(counters);
-      this.setState({ counters });
-    } 
+    const counters = [...this.state.counters];
+    const index = counters.indexOf(counter);
+    counters[index] = { ...counter };
+    counters[index].value--;
+    console.log(counters);
+    this.setState({ counters });
   };
 
   render() {
