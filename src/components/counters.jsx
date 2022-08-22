@@ -6,15 +6,13 @@ class Counters extends Component {
     return (
       <div>
         <button
-          onClick={this.handleReset}
+          onClick={this.props.onReset}
           className="btn btn-primary btn-sm m-2"
         >
           Reset
         </button>
-        {this.state.counters.map((counter) => (
+        {this.props.counters.map((counter) => (
           <Counter
-            // the counter componet is a child component to the counters componet.
-            // this are all props, except the key which is used to uniquely identify a counter
             key={counter.id}
             // instead of 
             // id = {counter.id},
@@ -23,8 +21,8 @@ class Counters extends Component {
             // we won't need to modify our code
             // counter = {counter} will handle it.
             counter={counter}
-            onDelete={() => this.handleDelete(counter)}
-            onIncrement={this.handleIncrement}
+            onDelete={this.props.onDelete}
+            onIncrement={this.props.onIncrement}
           />
         ))}
       </div>

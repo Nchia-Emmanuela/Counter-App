@@ -22,7 +22,7 @@ class Counter extends Component {
         </button>
         <button
           // the child component raises an event know as the onDelete event and the parent component handles it.
-          onClick={() => this.props.onDelete(this.props.counter.id)}
+          onClick={() => this.props.onDelete(this.props.counter)}
           className="btn btn-danger btn-sm m-2"
         >
           Delete

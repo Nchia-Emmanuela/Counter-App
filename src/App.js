@@ -36,6 +36,7 @@ class App extends Component {
 
   handleDelete = (counter) => {
     const counters = this.state.counters.filter((c) => c.id !== counter.id);
+    console.log(counters)
     this.setState({ counters });
   };
 
@@ -44,7 +45,12 @@ class App extends Component {
       <React.Fragment>
         <NavBar />
         <main className="container">
-          <Counters />
+          <Counters
+            counters={this.state.counters}
+            onReset={this.handleReset}
+            onDelete={this.handleDelete}
+            onIncrement={this.handleIncrement}
+          />
         </main>
       </React.Fragment>
     );
