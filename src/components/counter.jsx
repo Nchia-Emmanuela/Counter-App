@@ -21,6 +21,7 @@ class Counter extends Component {
           Increment
         </button>
         <button
+          // the child component raises an event know as the onDelete event and the parent component handles it.
           onClick={() => this.props.onDelete(this.props.counter.id)}
           className="btn btn-danger btn-sm m-2"
         >

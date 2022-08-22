@@ -2,36 +2,6 @@ import React, { Component } from "react";
 import Counter from "./counter";
 
 class Counters extends Component {
-  state = {
-    counters: [
-      { id: 1, value: 0 },
-      { id: 2, value: 4 },
-      { id: 3, value: 0 },
-      { id: 4, value: 0 },
-    ],
-  };
-
-  handleIncrement = (counter) => {
-    const counters = [...this.state.counters];
-    const index = counters.indexOf(counter);
-    counters[index] = { ...counter };
-    counters[index].value++;
-    this.setState({ counters });
-  };
-
-  handleReset = (counterId) => {
-    const counters = this.state.counters.map((c) => {
-      c.value = 0;
-      return c;
-    });
-    this.setState({ counters });
-  };
-
-  handleDelete = (counter) => {
-    const counters = this.state.counters.filter((c) => c.id !== counter.id);
-    this.setState({ counters });
-  };
-
   render() {
     return (
       <div>
@@ -43,7 +13,15 @@ class Counters extends Component {
         </button>
         {this.state.counters.map((counter) => (
           <Counter
+            // the counter componet is a child component to the counters componet.
+            // this are all props, except the key which is used to uniquely identify a counter
             key={counter.id}
+            // instead of 
+            // id = {counter.id},
+            // value= {counter.id}
+            // we use encapsulation👇👇👇 such that if in the future another attribute adds.
+            // we won't need to modify our code
+            // counter = {counter} will handle it.
             counter={counter}
             onDelete={() => this.handleDelete(counter)}
             onIncrement={this.handleIncrement}
